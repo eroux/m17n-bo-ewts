@@ -7,7 +7,7 @@ so I put it here in case someone needs it.
 
 The update makes things work better, especially with ambiguous cases like `brgya` (see [this](code.google.com/p/ibus/issues/detail?id=1688) [bug](https://savannah.nongnu.org/bugs/index.php?42656)).
 
-If the merge is made upstream, this repository might disappear, but 
+If the merge is made upstream, this repository might disappear, but in the meantime, do not hesitate to contribute!
 
 ## Purpose
 
