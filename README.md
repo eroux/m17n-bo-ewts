@@ -44,20 +44,18 @@ To install this file, once you have the m17n system working, simply copy it to
   * Dh -> D+h
   * kSh -> k+Sh
 
-* as a way of consequence of previous point, following precomposed characters are not used anymore:
-  * 0F52 -> 0F51 0FB7
-  * 0F43 -> 0F42 0FB7
-  * 0F4D -> 0F4C 0FB7
-  * 0F57 -> 0F56 0FB7
-  * 0F5B -> 0F5C 0FB7
-  * 0F69 -> 0F40 0FB5
+* more [NFC](http://www.unicode.org/reports/tr15/) compositions:
+  * D+h -> 0F4D (wasn't always the case before)
+  * +k+Sh (0F90 0FB5) -> 0FB9
+  * +g+h (0F92 0FB7) -> 0F93
+  * +b+h (0FA6 0FB7) -> 0FA7
+  * +d+h (0FA1 0FB7) -> 0FA2
+  * +dz+h (0FAB 0FB7) -> 0FAC
+  * +D+h (0F9C 0FB7) -> 0F9D
 
-* not composing following characters:
-  * 0F76 -> 0FB2 0F80
-  * 0F78 -> 0FB3 0F80
+* renaming "precomposed" variable into "nfd", with a different meaning: when
+  nfd is 1, NFD is used, and when nfd is 0, NFC is used.
 
-* using 0F00 for oM
-
-* removing "precomposed" variables
+* defaulting to NFC instead of previous NFD, as recommended by [W3C](http://www.w3.org/International/questions/qa-html-css-normalization) and [Unicode Consortium](http://www.unicode.org/faq/normalization.html).
 
 * updating copyright

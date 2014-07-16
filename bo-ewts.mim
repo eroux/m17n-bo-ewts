@@ -31,6 +31,13 @@ Version 2.0 <http://www.thlib.org/reference/transliteration/#!essay=/thl/ewts>."
 
 (title "ཀ")
 
+(variable
+ (nfd
+  (_"Flag to tell whether or not to nfd or NFD Unicode Normalization.
+If 1, generate NFD (e.g. U+0F76).
+If 0, generate nfd (e.g. U+0FB2 U+0F80).")
+  0 0 1))
+
 (map
  ;; This map is used also for subjoined consonants.
  (consonant
@@ -189,7 +196,7 @@ Version 2.0 <http://www.thlib.org/reference/transliteration/#!essay=/thl/ewts>."
   ("brtsw" "བརྩྭ")
   ("brgw" "བརྒྭ")
   ;; oM
-  ("oM" "ༀ")
+  ("oM" (cond ((= nfd 1) "ཨོཾ") (1 "ༀ")))
 )
 
  (force-stack
@@ -199,6 +206,22 @@ Version 2.0 <http://www.thlib.org/reference/transliteration/#!essay=/thl/ewts>."
   ("."))
 
  (special-subjoined
+  ("h" (cond ((= nfd 1) "ྷ")
+	     ((= @-1 ?ག) (delete @-1) "གྷ")
+	     ((= @-1 ?ད) (delete @-1)  "དྷ")
+	     ((= @-1 ?ཌ) (delete @-1)  "ཌྷ")
+	     ((= @-1 ?བ) (delete @-1)  "བྷ")
+	     ((= @-1 ?ཛ) (delete @-1)  "ཛྷ")
+	     ((= @-1 ?ྒ) (delete @-1) "ྒྷ")
+	     ((= @-1 ?ྡ) (delete @-1)  "ྡྷ")
+	     ((= @-1 ?ྜ) (delete @-1)  "ྜྷ")
+	     ((= @-1 ?ྦ) (delete @-1)  "ྦྷ")
+	     ((= @-1 ?ྫ) (delete @-1)  "ྫྷ")
+	     (1 "ྷ")))
+  ("Sh" (cond ((= nfd 1) "ྵ")
+	      ((= @-1 ?ཀ) (delete @-1) "ཀྵ")
+	      ((= @-1 ?ྐ) (delete @-1) "ྐྵ")
+	      (1 "ྵ")))
   ("v" "ྦ༹")
   ("f" "ྥ༹")
   ("W" "ྺ")
@@ -208,7 +231,10 @@ Version 2.0 <http://www.thlib.org/reference/transliteration/#!essay=/thl/ewts>."
 
  (vowel
   ("a" "")
-  ("i" "ི")
+  ("-i" (cond ((= nfd 1) "ྀ")
+	      ((= @-1 ?ྲ) "ྲྀ")
+	      ((= @-1 ?ླ) "ླྀ")
+	      (1 "ྀ")))
   ("u" "ུ")
   ("e" "ེ")
   ("o" "ོ")
