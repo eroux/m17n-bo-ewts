@@ -186,6 +186,8 @@ Version 2.0 <http://www.thlib.org/reference/transliteration/#!essay=/thl/ewts>."
   ("brgy" "བརྒྱ")
   ("blt" "བལྟ")
   ("bld" "བལྡ")
+  ("brtsw" "བརྩྭ")
+  ("brgw" "བརྒྭ")
   ;; oM
   ("oM" "ༀ")
 )
