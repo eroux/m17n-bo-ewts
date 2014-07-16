@@ -33,9 +33,9 @@ Version 2.0 <http://www.thlib.org/reference/transliteration/#!essay=/thl/ewts>."
 
 (variable
  (nfd
-  (_"Flag to tell whether or not to nfd or NFD Unicode Normalization.
-If 1, generate NFD (e.g. U+0F76).
-If 0, generate nfd (e.g. U+0FB2 U+0F80).")
+  (_"Flag to tell whether or not to use NFD (Unicode Normalization Form D, e.g. decomposed characters).
+If 1, generate NFD (e.g. U+0FB2 U+0F80).
+If 0, generate NFC (e.g. U+0F76).")
   0 0 1))
 
 (map
