@@ -32,11 +32,11 @@ Version 2.0 <http://www.thlib.org/reference/transliteration/#!essay=/thl/ewts>."
 (title "ཀ")
 
 (variable
- (nfd
-  (_"Flag to tell whether or not to use NFD (Unicode Normalization Form D, e.g. decomposed characters).
-If 1, generate NFD (e.g. U+0FB2 U+0F80).
-If 0, generate NFC (e.g. U+0F76).")
-  0 0 1))
+ (precomposed
+  (_"Flag to tell whether or not to generate precomposed characters.
+If 1 (the default), generate precomposed characters (i.e. NFC) if available (e.g. \"ྲྀ\"(U+0F76).
+If 0, generate only decomposed characters (i.e. NFD) (e.g. \"ྲྀ\" (U+0FB2 U+0F80).")
+  1 0 1))
 
 (map
  ;; This map is used also for subjoined consonants.
@@ -196,7 +196,7 @@ If 0, generate NFC (e.g. U+0F76).")
   ("brtsw" "བརྩྭ")
   ("brgw" "བརྒྭ")
   ;; oM
-  ("oM" (cond ((= nfd 1) "ཨོཾ") (1 "ༀ")))
+  ("oM" (cond ((= precomposed 0) "ཨོཾ") (1 "ༀ")))
 )
 
  (force-stack
@@ -206,7 +206,7 @@ If 0, generate NFC (e.g. U+0F76).")
   ("."))
 
  (special-subjoined
-  ("h" (cond ((= nfd 1) "ྷ")
+  ("h" (cond ((= precomposed 0) "ྷ")
 	     ((= @-1 ?ག) (delete @-1) "གྷ")
 	     ((= @-1 ?ད) (delete @-1)  "དྷ")
 	     ((= @-1 ?ཌ) (delete @-1)  "ཌྷ")
@@ -218,7 +218,7 @@ If 0, generate NFC (e.g. U+0F76).")
 	     ((= @-1 ?ྦ) (delete @-1)  "ྦྷ")
 	     ((= @-1 ?ྫ) (delete @-1)  "ྫྷ")
 	     (1 "ྷ")))
-  ("Sh" (cond ((= nfd 1) "ྵ")
+  ("Sh" (cond ((= precomposed 0) "ྵ")
 	      ((= @-1 ?ཀ) (delete @-1) "ཀྵ")
 	      ((= @-1 ?ྐ) (delete @-1) "ྐྵ")
 	      (1 "ྵ")))
@@ -231,14 +231,14 @@ If 0, generate NFC (e.g. U+0F76).")
 
  (vowel
   ("a" "")
-  ("-i" (cond ((= nfd 1) "ྀ")
+  ("-i" (cond ((= precomposed 0) "ྀ")
 	      ((= @-1 ?ྲ) "ྲྀ")
 	      ((= @-1 ?ླ) "ླྀ")
 	      (1 "ྀ")))
   ("u" "ུ")
   ("e" "ེ")
   ("o" "ོ")
-  ("-i" "ྀ")
+  ("i" "ི")
   ("A" "ཱ")
   ("I" "ཱི")
   ("U" "ཱུ")
