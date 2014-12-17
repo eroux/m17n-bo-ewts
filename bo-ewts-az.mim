@@ -1,0 +1,365 @@
+;; bo-ewts.mim -- Tibetan input method with EWTS
+;; Copyright (C) 2007, 2008, 2009
+;;   National Institute of Advanced Industrial Science and Technology (AIST)
+;;   Registration Number H15PRO112
+;; Copyright (C) 2010 Hugues MOISY <hugues.moisy@gmail.com>
+;; Copyright (C) 2014 Elie Roux <elie.roux@telecom-bretagne.eu>
+
+;; This file is part of the m17n database; a sub-part of the m17n
+;; library.
+
+;; The m17n library is free software; you can redistribute it and/or
+;; modify it under the terms of the GNU Lesser General Public License
+;; as published by the Free Software Foundation; either version 2.1 of
+;; the License, or (at your option) any later version.
+
+;; The m17n library is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+;; Lesser General Public License for more details.
+
+;; You should have received a copy of the GNU Lesser General Public
+;; License along with the m17n library; if not, write to the Free
+;; Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+;; Boston, MA 02110-1301, USA.
+
+(input-method bo ewtsaz)
+
+(description "Tibetan input method based on EWTS, on an azerty keyboard.
+This implementation is based on THDL Extended Wylie Transliteration Scheme
+Version 2.0 <http://www.thlib.org/reference/transliteration/#!essay=/thl/ewts>.")
+
+(title "tib")
+
+(variable
+ (precomposed
+  (_"Flag to tell whether or not to generate precomposed characters.
+If 1 (the default), generate precomposed characters (i.e. NFC) if available (e.g. \"ྲྀ\"(U+0F76).
+If 0, generate only decomposed characters (i.e. NFD) (e.g. \"ྲྀ\" (U+0FB2 U+0F80).")
+  1 0 1))
+
+(map
+ ;; This map is used also for subjoined consonants.
+ (consonant
+  ("k" "ཀ")
+  ("kh" "ཁ")
+  ("g" "ག")
+  ("ng" "ང")
+  ("c" "ཅ")
+  ("ch" "ཆ")
+  ("j" "ཇ")
+  ("ny" "ཉ")
+  ("T" "ཊ")
+  ("Th" "ཋ")
+  ("D" "ཌ")
+  ("N" "ཎ")
+  ("t" "ཏ")
+  ("th" "ཐ")
+  ("d" "ད")
+  ("n" "ན")
+  ("p" "པ")
+  ("ph" "ཕ")
+  ("b" "བ")
+  (";" "མ")
+  ("ts" "ཙ")
+  ("tsh" "ཚ")
+  ("dw" "ཛ")
+  ("z" "ཝ")
+  ("wh" "ཞ")
+  ("w" "ཟ")
+  ("4" "འ")
+  ("y" "ཡ")
+  ("r" "ར")
+  ("l" "ལ")
+  ("sh" "ཤ")
+  ("Sh" "ཥ")
+  ("s" "ས")
+  ("h" "ཧ")
+  ("q" "ཨ")
+)
+
+ ;; Standard Tibetan Stacks listed at:
+ ;; <http://www.thlib.org/reference/transliteration/tibstacks.php>
+ (standard-stack
+  ("f" "ཕ༹")
+  ("v" "བ༹")
+  ("R" "ཪ")
+  ("rk" "རྐ")
+  ("rg" "རྒ")
+  ("rng" "རྔ")
+  ("rj" "རྗ")
+  ("rny" "རྙ")
+  ("rt" "རྟ")
+  ("rd" "རྡ")
+  ("rn" "རྣ ")
+  ("rb" "རྦ")
+  ("r;" "རྨ")
+  ("rts" "རྩ")
+  ("rdw" "རྫ")
+  ("lk" "ལྐ")
+  ("lg" "ལྒ")
+  ("lng" "ལྔ")
+  ("lc" "ལྕ")
+  ("lj" "ལྗ")
+  ("lt" "ལྟ")
+  ("ld" "སྡ")
+  ("lp" "ལྤ")
+  ("lb" "ལྦ")
+  ("lh" "ལྷ")
+  ("sk" "སྐ")
+  ("sg" "སྒ")
+  ("sng" "སྔ")
+  ("sny" "སྙ")
+  ("st" "སྟ")
+  ("sd" "སྡ")
+  ("sn" "སྣ")
+  ("sp" "སྤ")
+  ("sb" "སྦ")
+  ("s;" "སྨ")
+  ("sts" "སྩ")
+  ("kz" "ཀྭ")
+  ("khz" "ཁྭ")
+  ("gz" "གྭ")
+  ("cz" "ཅྭ")
+  ("nyz" "ཉྭ")
+  ("tz" "ཏྭ")
+  ("dz" "དྭ")
+  ("tsz" "ཙྭ")
+  ("tshz" "ཚྭ")
+  ("whz" "ཞྭ")
+  ("wz" "ཟྭ")
+  ("rz" "རྭ")
+  ("shz" "ཤྭ")
+  ("sz" "སྭ")
+  ("hz" "ཧྭ")
+  ("ky" "ཀྱ")
+  ("khy" "ཁྱ")
+  ("gy" "གྱ")
+  ("py" "པྱ")
+  ("phy" "ཕྱ")
+  ("by" "བྱ")
+  (";y" "མྱ")
+  ("kr" "ཀྲ")
+  ("khr" "ཁྲ")
+  ("gr" "གྲ")
+  ("tr" "ཏྲ")
+  ("thr" "ཐྲ")
+  ("dr" "དྲ")
+  ("pr" "པྲ")
+  ("phr" "ཕྲ")
+  ("br" "བྲ")
+  ("mr" "མྲ")
+  ("shr" "ཤྲ")
+  ("sr" "སྲ")
+  ("hr" "ཧྲ")
+  ("kl" "ཀླ")
+  ("gl" "གླ")
+  ("bl" "བླ")
+  ("zl" "ཟླ")
+  ("rl" "རླ")
+  ("sl" "སླ")
+  ("rky" "རྐྱ")
+  ("rgy" "རྒྱ")
+  ("rmy" "རྨྱ")
+  ("rgz" "རྒྭ")
+  ("rtsz" "རྩྭ")
+  ("sky" "སྐྱ")
+  ("sgy" "སྒྱ")
+  ("spy" "སྤྱ")
+  ("sby" "སྦྱ")
+  ("s;y" "སྨྱ")
+  ("skr" "སྐྲ")
+  ("sgr" "སྒྲ")
+  ("snr" "སྣྲ")
+  ("spr" "སྤྲ")
+  ("sbr" "སྦྲ")
+  ("s;r" "སྨྲ")
+  ("grz" "གྲྭ")
+  ("drz" "དྲྭ")
+  ("phyz" "ཕྱྭ")
+  ;; ambiguous cases with b as prefix
+  ("brk" "བརྐ")
+  ("brg" "བརྒ")
+  ("brng" "བརྔ")
+  ("brj" "བརྗ")
+  ("brl" "བརླ")
+  ("brny" "བརྙ")
+  ("brt" "བརྟ")
+  ("brd" "བརྡ")
+  ("brn" "བརྣ ")
+  ("brts" "བརྩ")
+  ("brdw" "བརྫ")
+  ("brky" "བརྐྱ")
+  ("brgy" "བརྒྱ")
+  ("blt" "བལྟ")
+  ("bld" "བལྡ")
+  ("brtsz" "བརྩྭ")
+  ("brgz" "བརྒྭ")
+  ;; oM
+  ("o:" (cond ((= precomposed 0) "ཨོཾ") (1 "ༀ")))
+)
+
+ (force-stack
+  ("+"))
+
+ (break-stack
+  ("."))
+
+ (special-subjoined
+  ("h" (cond ((= precomposed 0) "ྷ")
+      ((= @-1 ?ག) (delete @-1) "གྷ")
+      ((= @-1 ?ད) (delete @-1)  "དྷ")
+      ((= @-1 ?ཌ) (delete @-1)  "ཌྷ")
+      ((= @-1 ?བ) (delete @-1)  "བྷ")
+      ((= @-1 ?ཛ) (delete @-1)  "ཛྷ")
+      ((= @-1 ?ྒ) (delete @-1) "ྒྷ")
+      ((= @-1 ?ྡ) (delete @-1)  "ྡྷ")
+      ((= @-1 ?ྜ) (delete @-1)  "ྜྷ")
+      ((= @-1 ?ྦ) (delete @-1)  "ྦྷ")
+      ((= @-1 ?ྫ) (delete @-1)  "ྫྷ")
+      (1 "ྷ")))
+  ("Sh" (cond ((= precomposed 0) "ྵ")
+       ((= @-1 ?ཀ) (delete @-1) "ཀྵ")
+       ((= @-1 ?ྐ) (delete @-1) "ྐྵ")
+       (1 "ྵ")))
+  ("v" "ྦ༹")
+  ("f" "ྥ༹")
+  ("Z" "ྺ")
+  ("Y" "ྻ")
+  ("R" "ྼ")
+  ("W" "༹"))
+
+ (vowel
+  ("q" "")
+  ("6i" (cond ((= precomposed 0) "ྀ")
+       ((= @-1 ?ྲ) "ྲྀ")
+       ((= @-1 ?ླ) "ླྀ")
+       (1 "ྀ")))
+  ("u" "ུ")
+  ("e" "ེ")
+  ("o" "ོ")
+  ("i" "ི")
+  ("Q" "ཱ")
+  ("I" "ཱི")
+  ("U" "ཱུ")
+  ("qi" "ཻ")
+  ("qu" "ཽ")
+  ("uo" "ོུ")
+  ("ui" "ིུ")
+  ("ue" "ེུ")
+  ("r6I" "ྲཱྀ")
+  ("l6I" "ླཱྀ")
+  ("6I" "ཱྀ"))
+
+ (others
+  ;; Numbers
+  (")" "༠")
+  ("!" "༡")
+  ("@" "༢")
+  ("#" "༣")
+  ("$" "༤")
+  ("%" "༥")
+  ("^" "༦")
+  ("&" "༧")
+  ("*" "༨")
+  ("(" "༩")
+  ;; Sanskrit-related marks
+  ("H" "ཿ")
+  (":" "ཾ")
+  ("2:" "ྃ")
+  ("2:`" "ྂ")
+  ("M" "྄")
+  ;; Intersyllabic marks
+  (" " "་")
+  ;; Phrase deliminating marks
+  (">" "།")
+  (">>" "༎")
+  ("," "༏")
+  ("|" "༑")
+  ("/" "༈")
+  ("." "༔")
+  ("8" " ")
+  ("=" "༴")
+  ;; Head marks
+  ("0" "༄")
+  ("3" "༅")
+  ("]" "༆")
+  ("\"" "༇")
+  ;; Paired punctuation marks (brackets)
+  ("5" "༼")
+  ("-" "༽")
+  ;; Miscellaneous
+  ("2X" "༵")
+  ("X" "༷")
+  ("[" "༹"))
+ 
+ (escape
+  ("\\" (mark BEG) "\\"))
+
+ (unicode
+  ("u" "u" (set MAX-COUNT 4))
+  ("U" "U" (set MAX-COUNT 8)))
+
+ (hexadigit
+  ("0" "0")
+  ("1" "1")
+  ("2" "2")
+  ("3" "3")
+  ("4" "4")
+  ("5" "5")
+  ("6" "6")
+  ("7" "7")
+  ("8" "8")
+  ("9" "9")
+  ("Q" "Q") ("q" "Q")
+  ("B" "B") ("b" "B")
+  ("C" "C") ("c" "C")
+  ("D" "D") ("d" "D")
+  ("E" "E") ("e" "E")
+  ("F" "F") ("f" "F"))
+
+ (backspace
+  ((Backspace) (undo))))
+
+(state
+ (init
+  (consonant (shift after-consonant))
+  (standard-stack (shift after-consonant))
+  (vowel (move @<) "ཨ" (move @>) (shift after-vowel))
+  (others)
+  (escape (shift dispatch-escape))
+  (backspace))
+
+ (after-consonant
+  (force-stack (shift consonant-stack))
+  (break-stack (shift init))
+  (vowel (shift after-vowel)))
+  
+ (consonant-stack
+  (special-subjoined (shift after-consonant))
+  (consonant (set C @-1) (delete @-1) (add C #x50) (insert C)
+      (shift after-consonant))
+  (force-stack)
+  (nil (pop)))
+
+ (after-vowel
+  (force-stack (shift vowel-stack)))
+
+ (vowel-stack
+  (vowel (shift after-vowel)))
+
+ (dispatch-escape
+  (unicode (shift unicode))
+  (nil (delete BEG) (shift init) (unhandle)))
+
+ (unicode
+  (t (set COUNT 0) (set UNICODE 0))
+  (hexadigit (cond ((> @-1 ?9) (set UNICODE (+ (* UNICODE 16) (- @-1 55))))
+       (1 (set UNICODE (+ (* UNICODE 16) (- @-1 48)))))
+       (set COUNT (+ COUNT 1))
+       (cond ((= COUNT MAX-COUNT) (delete BEG) (insert UNICODE)
+        (shift init)))))
+
+;; Local Variables:
+;; mode: lisp
+;; End:
