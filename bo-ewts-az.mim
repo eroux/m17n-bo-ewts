@@ -36,6 +36,9 @@ Version 2.0 <http://www.thlib.org/reference/transliteration/#!essay=/thl/ewts>."
   (_"Flag to tell whether or not to generate precomposed characters.
 If 1 (the default), generate precomposed characters (i.e. NFC) if available (e.g. \"ྲྀ\"(U+0F76).
 If 0, generate only decomposed characters (i.e. NFD) (e.g. \"ྲྀ\" (U+0FB2 U+0F80).")
+  ;; The default should be 1 (i.e NFC) according to:
+  ;;   http://www.w3.org/International/questions/qa-html-css-normalization
+  ;;   and Unicode Consortium http://www.unicode.org/faq/normalization.html
   1 0 1))
 
 (map
